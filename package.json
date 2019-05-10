@@ -1,0 +1,25 @@
+{
+  "name": "mongonowpod",
+  "version": "0.1.0",
+  "description": "serverless api for podlist website using mongodb and zeit now",
+  "main": "dist/test.js",
+  "scripts": {
+    "nodemon": "nodemon",
+    "build": "tsc",
+    "tswatch": "tsc --watch",
+    "deploy": "npm run build && now"
+  },
+  "author": "Thomas Wiegold",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mongodb": "^3.1.26",
+    "nodemon": "^1.19.0",
+    "prettier": "^1.17.0",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "mongodb": "^3.2.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "podnow-api-v1",
+  "version": 2,
+  "builds": [
+    { "src": "dist/api/podcastRandom.js", "use": "@now/node@canary" },
+    { "src": "dist/api/podcastAll.js", "use": "@now/node@canary" },
+    { "src": "dist/api/podcastSingle.js", "use": "@now/node@canary" },
+    { "src": "dist/api/episodeAll.js", "use": "@now/node@canary" },
+    { "src": "dist/api/episodePodcast.js", "use": "@now/node@canary" },
+    { "src": "dist/api/episodeSingle.js", "use": "@now/node@canary" }
+  ],
+  "routes": [
+    {
+      "src": "/dist/api/.+",
+      "headers": { "cache-control": "max-age=0, s-maxage=60" }
+    }
+  ],
+  "env": {
+    "MONGOURL": "@mongourl1",
+    "DBNAME": "podmo"
+  }
+}
