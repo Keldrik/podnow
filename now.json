@@ -11,8 +11,60 @@
   ],
   "routes": [
     {
-      "src": "/dist/api/.+",
-      "headers": { "cache-control": "max-age=0, s-maxage=60" }
+      "src": "/podcast/all/?",
+      "dest": "dist/api/podcastAll.js",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/podcast/all/(?<page>[\\d]+)/?",
+      "dest": "dist/api/podcastAll.js?page=$page",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/podcast/random/?",
+      "dest": "dist/api/podcastRandom.js",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/podcast/(?<podlisturl>[\\w\\d-]+)/?",
+      "dest": "dist/api/podcastSingle.js?podlisturl=$podlisturl",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/podcast/(?<podcasturl>[\\w\\d-]+)/all/?",
+      "dest": "dist/api/episodePodcast.js?podcasturl=$podcasturl",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/podcast/(?<podcasturl>[\\w\\d-]+)/all/(?<page>[\\d]+)/?",
+      "dest": "dist/api/episodePodcast.js?podcasturl=$podcasturl&page=$page",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/podcast/(?<podcasturl>[\\w\\d-]+)/(?<podlisturl>[\\w\\d-]+)/?",
+      "dest": "dist/api/episodeSingle.js?podcasturl=$podcasturl&podlisturl=$podlisturl",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
     }
   ],
   "env": {
