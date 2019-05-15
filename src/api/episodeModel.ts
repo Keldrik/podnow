@@ -27,4 +27,5 @@ export interface episode {
   podlistUrl: string;
   content: string;
   chapters: chapter[];
+  podcastImage: string;
 }

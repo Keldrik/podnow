@@ -21,6 +21,15 @@ const getData = async (page: number): Promise<episodeList> => {
       .sort({ published: -1 })
       .skip(skip)
       .limit(pageSize)
+      .project({
+        title: 1,
+        published: 1,
+        summary: 1,
+        subtitle: 1,
+        podcastUrl: 1,
+        podlistUrl: 1,
+        podcastImage: 1
+      })
       .toArray(),
     allCount: episodeCount,
     pageSize: pageSize,
