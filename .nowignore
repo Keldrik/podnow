@@ -1,13 +1,9 @@
 node_modules
-src
 .prettierrc
 .idea
 nodemon.json
-tsconfig.json
 tslint.json
 package-lock.json
-dist/test.js
-dist/**/*.js.map
 yarn.lock
 README.md
 .env
