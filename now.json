@@ -1,5 +1,4 @@
 {
-  "name": "podnow-api-v1",
   "version": 2,
   "builds": [
     { "src": "dist/api/podcastRandom.js", "use": "@now/node@canary" },
@@ -10,6 +9,22 @@
     { "src": "dist/api/episodeSingle.js", "use": "@now/node@canary" }
   ],
   "routes": [
+    {
+      "src": "/episodenew/?",
+      "dest": "dist/api/episodeAll.js",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/episodenew/(?<page>[\\d]+)/?",
+      "dest": "dist/api/episodeAll.js?page=$page",
+      "headers": {
+        "cache-control": "max-age=0, s-maxage=600",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
     {
       "src": "/podcast/all/?",
       "dest": "dist/api/podcastAll.js",
