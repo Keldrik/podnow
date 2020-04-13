@@ -27,6 +27,7 @@ const getData = async (page: number): Promise<episodeList> => {
         summary: 1,
         subtitle: 1,
         podcastUrl: 1,
+        podcastTitle: 1,
         podlistUrl: 1,
         podcastImage: 1
       })
