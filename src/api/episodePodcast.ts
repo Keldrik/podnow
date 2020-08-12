@@ -17,7 +17,10 @@ const getData = async (
   const episodes: Collection<episode> = db.collection('episodes');
   let skip: number = 0;
   if (page > 1) skip = (page - 1) * pageSize;
-  const episodeData = await episodes.find({ podcastUrl: podcasturl });
+  const episodeData = await episodes.find(
+    { podcastUrl: podcasturl },
+    { maxTimeMS: 2000 }
+  );
   const episodeCount = await episodeData.count();
   if (episodeCount === 0) return null;
   const result: episodeList = {

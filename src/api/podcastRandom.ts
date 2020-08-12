@@ -11,7 +11,11 @@ const getData = async (db: Db): Promise<podcast> => {
   const podcasts: Collection<podcast> = db.collection('podcasts');
   const max: number = await podcasts.countDocuments();
   const random: number = helper.getRandomNumber(max);
-  const pod: podcast[] = await podcasts.find().skip(random).limit(1).toArray();
+  const pod: podcast[] = await podcasts
+    .find({}, { maxTimeMS: 2000 })
+    .skip(random)
+    .limit(1)
+    .toArray();
   return pod[0];
 };
 

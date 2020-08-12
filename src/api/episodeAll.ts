@@ -13,7 +13,7 @@ const getData = async (db: Db, page: number): Promise<episodeList> => {
   const episodes: Collection<episode> = db.collection('episodes');
   let skip: number = 0;
   if (page > 1) skip = (page - 1) * pageSize;
-  const episodeData = await episodes.find();
+  const episodeData = await episodes.find({}, { maxTimeMS: 2000 });
   const episodeCount = await episodeData.count();
   if (page > Math.ceil(episodeCount / pageSize)) return null;
   const result: episodeList = {
