@@ -8,14 +8,14 @@ import { episode } from './episodeModel';
 const apiId: string = 'episodeSingle';
 
 const getData = async (
+  db: Db,
   podcasturl: string,
   podlisturl: string
 ): Promise<episode> => {
-  const db: Db = await database();
   const episodes: Collection<episode> = db.collection('episodes');
   return await episodes.findOne({
     podlistUrl: podlisturl,
-    podcastUrl: podcasturl
+    podcastUrl: podcasturl,
   });
 };
 

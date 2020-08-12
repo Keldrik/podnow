@@ -10,15 +10,16 @@ const apiId: string = 'episodePodcast';
 const pageSize: number = 12;
 
 const getData = async (
+  db: Db,
   podcasturl: string,
   page: number
 ): Promise<episodeList> => {
-  const db: Db = await database();
   const episodes: Collection<episode> = db.collection('episodes');
   let skip: number = 0;
   if (page > 1) skip = (page - 1) * pageSize;
   const episodeData = await episodes.find({ podcastUrl: podcasturl });
   const episodeCount = await episodeData.count();
+  if (episodeCount === 0) return null;
   const result: episodeList = {
     episodes: await episodeData
       .sort({ published: -1 })
@@ -32,13 +33,13 @@ const getData = async (
         podcastUrl: 1,
         podcastTitle: 1,
         podlistUrl: 1,
-        podcastImage: 1
+        podcastImage: 1,
       })
       .toArray(),
     allCount: episodeCount,
     pageSize: pageSize,
     page: page,
-    lastPage: Math.ceil(episodeCount / pageSize)
+    lastPage: Math.ceil(episodeCount / pageSize),
   };
   return result;
 };

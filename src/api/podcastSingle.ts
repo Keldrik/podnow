@@ -1,4 +1,3 @@
-import database from '../database';
 import { Collection, Db } from 'mongodb';
 import { IncomingMessage, ServerResponse } from 'http';
 import apiHandler from '../apiHandler';
@@ -7,8 +6,7 @@ import { podcast } from './podcastModel';
 
 const apiId: string = 'podcastSingle';
 
-const getData = async (podlisturl: string): Promise<podcast> => {
-  const db: Db = await database();
+const getData = async (db: Db, podlisturl: string): Promise<podcast> => {
   const podcasts: Collection<podcast> = db.collection('podcasts');
   return await podcasts.findOne({ podlistUrl: podlisturl });
 };
