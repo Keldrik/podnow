@@ -1,7 +1,7 @@
 import { MongoClient, Db } from 'mongodb';
 
-const url: string = process.env.MONGOURL;
-const dbName: string = process.env.DBNAME;
+const url: string = 'mongodb://localhost:27017';
+const dbName: string = 'podmo';
 
 let cachedDb: Db = null;
 

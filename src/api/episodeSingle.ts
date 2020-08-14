@@ -13,13 +13,10 @@ const getData = async (
   podlisturl: string
 ): Promise<episode> => {
   const episodes: Collection<episode> = db.collection('episodes');
-  return await episodes.findOne(
-    {
-      podlistUrl: podlisturl,
-      podcastUrl: podcasturl,
-    },
-    { maxTimeMS: 2000 }
-  );
+  return await episodes.findOne({
+    podlistUrl: podlisturl,
+    podcastUrl: podcasturl,
+  });
 };
 
 module.exports = async (req: IncomingMessage, res: ServerResponse) => {

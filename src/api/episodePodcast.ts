@@ -1,4 +1,3 @@
-import database from '../database';
 import { Collection, Db } from 'mongodb';
 import { IncomingMessage, ServerResponse } from 'http';
 import apiHandler from '../apiHandler';
@@ -17,12 +16,9 @@ const getData = async (
   const episodes: Collection<episode> = db.collection('episodes');
   let skip: number = 0;
   if (page > 1) skip = (page - 1) * pageSize;
-  const episodeData = await episodes.find(
-    { podcastUrl: podcasturl },
-    { maxTimeMS: 2000 }
-  );
+  const episodeData = await episodes.find({ podcastUrl: podcasturl });
   const episodeCount = await episodeData.count();
-  if (episodeCount === 0) return null;
+  if (page > Math.ceil(episodeCount / pageSize)) return null;
   const result: episodeList = {
     episodes: await episodeData
       .sort({ published: -1 })

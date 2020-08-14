@@ -1,4 +1,3 @@
-import database from '../database';
 import helper from '../helper';
 import { Collection, Db } from 'mongodb';
 import { IncomingMessage, ServerResponse } from 'http';

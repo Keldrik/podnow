@@ -8,10 +8,7 @@ const apiId: string = 'podcastSingle';
 
 const getData = async (db: Db, podlisturl: string): Promise<podcast> => {
   const podcasts: Collection<podcast> = db.collection('podcasts');
-  return await podcasts.findOne(
-    { podlistUrl: podlisturl },
-    { maxTimeMS: 2000 }
-  );
+  return await podcasts.findOne({ podlistUrl: podlisturl });
 };
 
 module.exports = async (req: IncomingMessage, res: ServerResponse) => {
